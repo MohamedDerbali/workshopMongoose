@@ -1,0 +1,49 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+	<h1>liste des contacts</h1>
+	<table border="1">
+		<thead>
+			<th>
+				FullName
+			</th>
+			<th>
+				Phone
+			</th>
+            <th>
+            Action
+            </th>
+		</thead>
+		<tbody>
+			{% for contact in contacts %}
+				<tr>
+					<td>
+						{{ contact.FullName }}
+					</td>
+					<td>
+						{{ contact.Phone }}
+					</td>
+                    <td>
+						<a href="http://localhost:3000/contacts/removeContact/{{contact._id}}"><button style="background-color:red;color:white;font-weight:bold">remove</button></a>
+                        <a href="http://localhost:3000/contacts/updateContact/{{contact._id}}"><button style="background-color:blue;color:white;font-weight:bold">update</button></a>
+                    </td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+
+	<h1 style="color:red">
+		Add contact</h1>
+	<form method="post" action="http://localhost:3000/contacts/addContact">
+		FullName:
+		<input type="text" name="FullName" style="width:250px"/>
+		<br/><br/>
+		Phone:
+		<input type="number" name="Phone" style="width:250px;margin:20px"/>
+		<br/>
+		<button type="submit" style="background-color:green;color:white">
+			add new contact
+		</button>
+	</form>
+{% endblock %}
